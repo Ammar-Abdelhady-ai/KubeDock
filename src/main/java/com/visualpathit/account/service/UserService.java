@@ -4,13 +4,33 @@ import java.util.List;
 
 import com.visualpathit.account.model.User;
 
-/** {@author imrant}!*/
+/**
+ * Service interface for User management operations.
+ */
 public interface UserService {
-	/** {@inheritDoc}} !*/
+    /**
+     * Saves a user to the database.
+     * @param user the user entity to save
+     */
     void save(User user);
-    /** {@inheritDoc}} !*/
+
+    /**
+     * Finds a user by their unique username.
+     * @param username the username to search for
+     * @return the found User object
+     */
     User findByUsername(String username);
+
+    /**
+     * Finds a user by their unique ID.
+     * @param id the user ID
+     * @return the found User object
+     */
     User findById(long id);
-    /*public void updateUser(User user);*/
+
+    /**
+     * Retrieves a list of all users in the system.
+     * @return a list of User entities
+     */
     public List <User> getList();
 }

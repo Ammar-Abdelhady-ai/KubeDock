@@ -16,6 +16,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for managing user-related operations including registration, login, and profile updates.
+ * Integrates with SecurityService for authentication and Memcached for data caching.
+ */
 @Controller
 public class UserController {
 
@@ -31,6 +35,11 @@ public class UserController {
     @Autowired
     private ProducerService producerService;
 
+    /**
+     * Renders the registration page.
+     * @param model the Spring UI model
+     * @return the registration view name
+     */
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -86,6 +95,11 @@ public class UserController {
         return "index_home";
     }
 
+    /**
+     * Lists all registered users.
+     * @param model the Spring UI model
+     * @return the user list view name
+     */
     @GetMapping("/users")
     public String getAllUsers(Model model) {
         List<User> users = userService.getList();
@@ -93,6 +107,12 @@ public class UserController {
         return "userList";
     }
 
+    /**
+     * Retrieves a single user by ID, checking the cache first before querying the database.
+     * @param id the user ID
+     * @param model the Spring UI model
+     * @return the user details view name
+     */
     @GetMapping("/users/{id}")
     public String getOneUser(@PathVariable("id") String id, Model model) {
         String result;
