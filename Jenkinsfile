@@ -19,6 +19,7 @@ pipeline {
     stages{
         
         stage('BUILD'){
+            // Clean and install dependencies, skipping tests for faster build
             steps {
                 sh 'mvn clean install -DskipTests'
             }
@@ -31,6 +32,7 @@ pipeline {
         }
 
 	stage('UNIT TEST'){
+            // Run unit tests
             steps {
                 sh 'mvn test'
             }
@@ -43,6 +45,7 @@ pipeline {
         }
 		
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
+            // Analyze code style using Checkstyle
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
@@ -60,6 +63,7 @@ pipeline {
           }
 
           steps {
+            // Analyze code quality using SonarQube
             withSonarQubeEnv('sonar-pro') {
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
@@ -78,6 +82,7 @@ pipeline {
         }
 
         stage("Publish to Nexus Repository Manager") {
+            // Upload built artifact to Nexus Repository
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";

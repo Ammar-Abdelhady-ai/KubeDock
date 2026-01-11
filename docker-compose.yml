@@ -31,8 +31,8 @@ services:
 
   vproapp:
     build:
-      context: "./Docker-files/app"
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./Docker-files/app/Dockerfile
     image: ammarabdelhady8132/vprofileapp  
     container_name: vprodbapp
     ports:
