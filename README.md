@@ -1,5 +1,3 @@
-![KubeDock Banner](/home/ammar/.gemini/antigravity/brain/b0297d27-1808-4ebc-88c5-b4b0e61e2e6d/kubedock_banner_1768163045935.png)
-
 # VProfile - Kubernetes Deployment
 
 > **Comprehensive DevOps Checklist for VProfile App**
